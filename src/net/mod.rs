@@ -10,8 +10,8 @@ pub use app::*;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Signal<T> {
-    op: u8,
-    body: T,
+    pub op: u8,
+    pub body: T,
 }
 
 impl Signal<Event> {
