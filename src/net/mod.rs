@@ -9,22 +9,22 @@ mod app;
 pub use app::*;
 
 #[derive(Serialize, Deserialize, Debug)]
-struct Signal<T> {
+pub struct Signal<T> {
     op: u8,
     body: T,
 }
 
 impl Signal<Event> {
-    fn event(event: Event) -> Self {
+    pub fn event(event: Event) -> Self {
         Self { op: 0, body: event }
     }
 }
 
 impl Signal<()> {
-    fn ping() -> Self {
+    pub fn ping() -> Self {
         Self { op: 1, body: () }
     }
-    fn pong() -> Self {
+    pub fn pong() -> Self {
         Self { op: 2, body: () }
     }
 }
@@ -36,7 +36,7 @@ pub struct Identify {
 }
 
 impl Signal<Identify> {
-    fn identfy(token: &str, seq: i64) -> Self {
+    pub fn identfy(token: &str, seq: i64) -> Self {
         Self {
             op: 3,
             body: Identify {
@@ -53,7 +53,7 @@ pub struct Logins {
 }
 
 impl Signal<Logins> {
-    fn ready(logins: Vec<Login>) -> Self {
+    pub fn ready(logins: Vec<Login>) -> Self {
         Self {
             op: 4,
             body: Logins { logins },
